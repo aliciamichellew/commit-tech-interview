@@ -73,7 +73,7 @@ export default function LoginSide() {
       localStorage.setItem("userInfo", JSON.stringify(data));
       setAuthToken(data.token);
       setLoading(false);
-      navigate("/home");
+      navigate("/profile");
     } catch (error) {
       setError(error.response.data.message);
       setLoading(false);

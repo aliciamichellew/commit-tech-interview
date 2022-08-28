@@ -1,5 +1,6 @@
 const User = require("../models/userModel");
 const generateToken = require("../utils/generateToken");
+const cloudinary = require("../cloudinary/cloudinary");
 
 const isUserExist = async (email) => {
   const user = await User.findOne({ email });
@@ -78,7 +79,75 @@ const authUser = async (req, res) => {
   }
 };
 
+const getUserProfile = async (req, res) => {
+  try {
+    const { userId } = req.params;
+    const user = await User.findOne({
+      _id: userId,
+    });
+    res.json(user);
+    return;
+  } catch (error) {
+    res
+      .status(400)
+      .send({ message: "Error occured when getting user profile" });
+  }
+};
+
+const updateUserProfile = async (req, res) => {
+  try {
+    const newProfile = req.body.profile;
+
+    // Disallow user to update email and username of profile
+    if (newProfile.hasOwnProperty("email")) {
+      res.status(400).send({ message: "Cannot update email" });
+      return;
+    }
+
+    const profile = await User.findOneAndUpdate(
+      {
+        _id: req.user._id,
+      },
+      newProfile,
+      { new: true }
+    );
+
+    res.status(200).send({ message: "Update status success" });
+    return;
+  } catch (err) {
+    res.status(400).send({ message: "Error occured when updating user" });
+    return;
+  }
+};
+
+const uploadProfilePic = async (req, res) => {
+  console.log("masuk");
+  const { image } = req.body;
+  const uploadedImage = await cloudinary.uploader.upload(
+    image,
+    {
+      upload_preset: "headquarter_profile",
+      allowed_formats: ["png", "jpg", "jpeg", "svg", "ico", "jfif", "webp"],
+    },
+    function (error, result) {
+      if (error) {
+        console.log(error);
+      }
+      // console.log(result);
+    }
+  );
+  try {
+    res.status(200).json(uploadedImage);
+    return;
+  } catch (error) {
+    console.log(error);
+  }
+};
+
 module.exports = {
   registerUser,
   authUser,
+  getUserProfile,
+  updateUserProfile,
+  uploadProfilePic,
 };

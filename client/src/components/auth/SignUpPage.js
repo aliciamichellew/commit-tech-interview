@@ -68,7 +68,7 @@ export default function SignUpSide() {
         setUserInfo(data);
         localStorage.setItem("userInfo", JSON.stringify(data));
         setAuthToken(data.token);
-        // navigate("/verifymail");
+        navigate("/profile");
       } catch (error) {
         setIsSignUpFail(true);
       } finally {
