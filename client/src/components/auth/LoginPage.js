@@ -14,7 +14,7 @@ import {
 } from "@mui/material";
 import { createTheme, ThemeProvider, styled } from "@mui/material/styles";
 
-import ErrorMessage from "../ErrorMessage";
+import ErrorMessage from "../utils/ErrorMessage";
 import setAuthToken from "../utils/setAuthToken";
 
 import axios from "axios";
@@ -93,7 +93,7 @@ export default function LoginSide() {
               md={5}
               square
               sx={{
-                backgroundColor: "#FFCE26",
+                // backgroundColor: "#FFCE26",
                 display: "flex",
                 flexDirection: "column",
                 alignItems: "center",
@@ -183,7 +183,7 @@ export default function LoginSide() {
                           mt: 2,
                           mb: 0,
                           color: "#000000",
-                          backgroundColor: "#FFCE26",
+                          // backgroundColor: "#FFCE26",
                         }}
                       >
                         <Typography>Log In</Typography>
@@ -194,24 +194,13 @@ export default function LoginSide() {
                         justifyContent="center"
                         alignItems="center"
                       >
-                        <Grid item xs>
-                          <Link
-                            component={RouterLink}
-                            to="/forgotpassword"
-                            variant="body2"
-                          >
-                            <Typography fontFamily={"Berlin Sans FB"}>
-                              Forgot password?
-                            </Typography>
-                          </Link>
-                        </Grid>
                         <Grid item>
                           <Link
                             component={RouterLink}
                             to="/signup"
                             variant="body2"
                           >
-                            <Typography fontFamily={"Berlin Sans FB"}>
+                            <Typography>
                               {"Don't have an account? Sign Up"}
                             </Typography>
                           </Link>
@@ -220,7 +209,6 @@ export default function LoginSide() {
                     </Box>
                   </CardActions>
                 </Card>
-                <Copyright sx={{ mt: 5 }} />
               </Box>
             </Grid>
           </Grid>
