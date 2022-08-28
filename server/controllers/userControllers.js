@@ -10,7 +10,6 @@ const isUserExist = async (email) => {
 
 const registerUser = async (req, res) => {
   try {
-    console.log("masuk backend");
     const { name, email, password, dateOfBirth } = req.body;
 
     if (await isUserExist(email)) {
@@ -27,8 +26,6 @@ const registerUser = async (req, res) => {
     });
 
     if (user) {
-      const token = generateToken(user._id);
-      console.log("user = ", user);
       res.status(201).json({
         _id: user._id,
         name: user.name,
@@ -104,7 +101,7 @@ const updateUserProfile = async (req, res) => {
       return;
     }
 
-    const profile = await User.findOneAndUpdate(
+    await User.findOneAndUpdate(
       {
         _id: req.user._id,
       },
@@ -121,7 +118,6 @@ const updateUserProfile = async (req, res) => {
 };
 
 const uploadProfilePic = async (req, res) => {
-  console.log("masuk");
   const { image } = req.body;
   const uploadedImage = await cloudinary.uploader.upload(
     image,
@@ -133,7 +129,6 @@ const uploadProfilePic = async (req, res) => {
       if (error) {
         console.log(error);
       }
-      // console.log(result);
     }
   );
   try {

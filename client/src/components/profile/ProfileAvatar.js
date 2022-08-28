@@ -14,8 +14,6 @@ const ProfileAvatar = ({ profilePic, width }) => {
   // Use the image with public ID, 'front_face'.
   const myImage = cld.image(profilePic);
 
-  // console.log(width);
-
   // Apply the transformation.
   myImage
     .format("png")
@@ -25,10 +23,7 @@ const ProfileAvatar = ({ profilePic, width }) => {
   // Render the transformed image in a React component.
   return (
     <div>
-      <AdvancedImage
-        cldImg={myImage}
-        // plugins={[responsive()]}
-      />
+      <AdvancedImage cldImg={myImage} />
     </div>
   );
 };

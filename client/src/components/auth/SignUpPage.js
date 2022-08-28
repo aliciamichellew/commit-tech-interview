@@ -1,4 +1,4 @@
-import React, { useEffect, useState, useContext } from "react";
+import React, { useState, useContext } from "react";
 import {
   Button,
   CssBaseline,
@@ -24,7 +24,6 @@ import setAuthToken from "../utils/setAuthToken";
 import { Link as RouterLink, useNavigate } from "react-router-dom";
 
 import axios from "axios";
-import { addUserToLocalStorage } from "../utils/localStorage";
 import { UserContext } from "../../App";
 
 const theme = createTheme();
@@ -76,8 +75,6 @@ export default function SignUpSide() {
       }
     }
   };
-
-  const [open, setOpen] = React.useState(false);
 
   return (
     <ThemeProvider theme={theme}>
@@ -133,7 +130,6 @@ export default function SignUpSide() {
                         value={name}
                         onChange={(e) => setName(e.target.value)}
                       />
-
                       <TextField
                         margin="normal"
                         required

@@ -1,4 +1,4 @@
-import React, { useContext, useEffect, useState } from "react";
+import React, { useContext, useState } from "react";
 import {
   Button,
   CssBaseline,
@@ -22,28 +22,10 @@ import axios from "axios";
 import { Link as RouterLink, useNavigate } from "react-router-dom";
 import { UserContext } from "../../App";
 
-const DrawerHeader = styled("div")(({ theme }) => ({
-  display: "flex",
-  alignItems: "center",
-  justifyContent: "flex-end",
-  padding: theme.spacing(0, 1),
-  // necessary for content to be below app bar
-  ...theme.mixins.toolbar,
-}));
-
 const theme = createTheme();
 
 export default function LoginSide() {
   const [open, setOpen] = React.useState(false);
-
-  const handleDrawerOpen = () => {
-    setOpen(true);
-  };
-
-  const handleDrawerClose = () => {
-    setOpen(false);
-  };
-
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState(false);
@@ -93,7 +75,6 @@ export default function LoginSide() {
               md={5}
               square
               sx={{
-                // backgroundColor: "#FFCE26",
                 display: "flex",
                 flexDirection: "column",
                 alignItems: "center",
@@ -183,7 +164,6 @@ export default function LoginSide() {
                           mt: 2,
                           mb: 0,
                           color: "#000000",
-                          // backgroundColor: "#FFCE26",
                         }}
                       >
                         <Typography>Log In</Typography>

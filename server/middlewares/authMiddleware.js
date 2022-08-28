@@ -1,6 +1,5 @@
 const jwt = require("jsonwebtoken");
 const User = require("../models/userModel.js");
-// const { buildErrorObject } = require("./errorMiddleware.js");
 const crypto = require("crypto");
 const secret = process.env.JWT_SECRET;
 const algorithm = "aes-192-cbc";

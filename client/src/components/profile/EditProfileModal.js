@@ -31,7 +31,6 @@ const EditProfileModal = ({ handleEditProfile }) => {
 
   const getUserProfile = async (e) => {
     try {
-      // setLoading(false);
       const config = {
         headers: {
           "Content-type": "application/json",

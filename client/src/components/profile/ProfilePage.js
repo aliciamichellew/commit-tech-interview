@@ -1,20 +1,8 @@
 import React, { useState, useEffect, useContext } from "react";
 
-import { styled, useTheme } from "@mui/material/styles";
-import {
-  Box,
-  Typography,
-  Grid,
-  Button,
-  Card,
-  CardContent,
-  Tabs,
-  Tab,
-  IconButton,
-} from "@mui/material";
-import { Chat, Home, Logout, ViewModule, Work } from "@mui/icons-material";
-
-import PropTypes from "prop-types";
+import { styled } from "@mui/material/styles";
+import { Box, Typography, Grid, Button } from "@mui/material";
+import { Logout } from "@mui/icons-material";
 
 import { useNavigate } from "react-router-dom";
 
@@ -32,26 +20,6 @@ const DrawerHeader = styled("div")(({ theme }) => ({
   // necessary for content to be below app bar
   ...theme.mixins.toolbar,
 }));
-
-function TabPanel(props) {
-  const { children, value, index, ...other } = props;
-
-  return (
-    <div
-      role="tabpanel"
-      hidden={value !== index}
-      id={`simple-tabpanel-${index}`}
-      aria-labelledby={`simple-tab-${index}`}
-      {...other}
-    >
-      {value === index && (
-        <Box sx={{ mx: 3, mb: 3 }}>
-          <Typography>{children}</Typography>
-        </Box>
-      )}
-    </div>
-  );
-}
 
 export default function MyProfilePage() {
   const navigate = useNavigate();
@@ -98,7 +66,7 @@ export default function MyProfilePage() {
         });
         const uploadedImg = result.data.public_id;
         setProfilePic(uploadedImg);
-        const { res } = await axios({
+        await axios({
           method: "put",
           url: "/api/users/editprofile",
           data: {
@@ -109,13 +77,7 @@ export default function MyProfilePage() {
         });
       }
 
-      const config = {
-        headers: {
-          "Content-type": "application/json",
-        },
-      };
-
-      const { res } = await axios({
+      await axios({
         method: "put",
         url: "/api/users/editprofile",
         data: {
