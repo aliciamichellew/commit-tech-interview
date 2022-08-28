@@ -62,7 +62,7 @@ export default function SignUpSide() {
         setLoading(true);
         const { data } = await axios.post(
           "/api/users",
-          { name, email, password },
+          { name, email, password, dateOfBirth },
           config
         );
         setUserInfo(data);

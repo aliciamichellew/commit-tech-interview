@@ -35,9 +35,9 @@ app.use(express.static(path.join(__dirname + "/public")));
 app.use("/api/users", userRoutes);
 // app.use(errorHandler);
 
-app.get("*", (req, res, next) => {
-  res.sendFile(path.join(__dirname + "/public/index.html"));
-});
+// app.get("*", (req, res, next) => {
+//   res.sendFile(path.join(__dirname + "/public/index.html"));
+// });
 // app.use(notFound);
 
 const server = app.listen(port, () => {

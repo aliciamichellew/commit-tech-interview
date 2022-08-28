@@ -1,11 +1,18 @@
 const User = require("../models/userModel");
 const generateToken = require("../utils/generateToken");
 
+const isUserExist = async (email) => {
+  const user = await User.findOne({ email });
+
+  return user ? true : false;
+};
+
 const registerUser = async (req, res) => {
   try {
+    console.log("masuk backend");
     const { name, email, password, dateOfBirth } = req.body;
 
-    if (await isUserExist(email, username)) {
+    if (await isUserExist(email)) {
       res.status(400).send({ message: "User already exist" });
       return;
     }
