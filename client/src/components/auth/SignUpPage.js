@@ -181,7 +181,11 @@ export default function SignUpSide() {
                   </CardContent>
                   {isSignUpFail && (
                     <div style={{ padding: "0px 10px 0px 10px" }}>
-                      <Alert severity="error">User already existed!</Alert>
+                      <Alert severity="error">
+                        Error in Signing up. Make sure you have every field
+                        filled. If error still occured, email address is already
+                        registered.
+                      </Alert>
                     </div>
                   )}
                   <CardActions
